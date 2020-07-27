@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utt-8">
+        <title>正则表达式</title>
+        <style>
+            input,textarea {
+                width: 800px;
+                height: 30px;
+                font-size: 28px;
+                margin-bottom: 10px;            
+            }
+            textarea {
+                height: 200px;
+            }
+            .box {
+                display: flex;
+                align-items: center;
+
+            }
+            input[type=button] {
+                width: 150px;
+                height: 30px;
+                font-size: 22px;
+            }
+            .con {
+                font-size: 30px;
+            }
+
+        </style>
+    </head> 
+    <body>
+        正则： <input type="text" name="reg"></input>
+        <div class="box">
+            <span>字符串：</span>
+            <textarea name="str" rows="10" cols="50"></textarea>
+        </div>
+        <input type="button" value="匹配" name="check">
+        <input type="button" value="清空" name="clear">
+        <div class="con">
+            匹配结果：
+        </div>
+
+
+    </body>
+    <script>
+        var regbox = document.querySelector("input[name=reg")
+        var strbox = document.querySelector("textarea")
+        var check = document.querySelector("input[name=check")
+        var clear = document.querySelector("input[name=clear")
+        var con = document.querySelector(".con")
+        check.onclick = function() {
+            var reg = eval(regbox.value)
+            var str = strbox.value
+            if(reg.test(str)) {
+                let res = reg.exec(str)
+                console.log(res)
+                con.innerHTML = `匹配结果：匹配成功。<br>字符串：${res[0]},<br>匹配位置：${res.index}`
+                // con.innerHTML = "匹配成功结果如下：<br/>匹配字符串是："+res[0]+"匹配位置是："+res.index
+            } else {
+                con.innerHTML = "匹配失败"
+            }
+        }
+        clear.onclick = function() {
+            regbox.value = ""
+            strbox.value = ""
+            con.innerHTML = ""
+        }
+    </script>
+</html>
